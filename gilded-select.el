@@ -1,4 +1,4 @@
-;;; gilded_select.el --- Minor enhancements to the excellent Selectrum package -*- lexical-binding: t -*-
+;;; gilded-select.el --- Minor enhancements to the excellent Selectrum package -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2020 Ashton Wiersdorf
 
