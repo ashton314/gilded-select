@@ -30,6 +30,8 @@
 
 (defvar gilded-command-keybinding-hash (make-hash-table) "Cache of commands to the keys they are bound to.")
 
+(defvar gilded--old-M-x-function nil "Previous function bound to `M-x'.")
+
 (defun gilded-rehash-key-bindings ()
   "Rebuild `gilded-command-keybinding-hash' so that calling
 `execute-extended-command' will show the proper keybindings next
@@ -103,6 +105,15 @@ the keybinding without any frills."
 
 ;; Rehash all the keybindings when we change to a new mode
 ;; (add-hook 'after-change-major-mode-hook 'gilded-rehash-key-bindings)
+
+;;;###autoload
+(define-minor-mode gilded-select-mode
+  "Minor mode to use gilded-select for `M-x'"
+  :init-value t
+  :lighter " Gild"
+  :global t
+  :keymap '(([M-x] . gilded-mx))
+  (add-hook 'after-init-hook 'gilded-rehash-key-bindings))
 
 ;;;; Postlude
 
