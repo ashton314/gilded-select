@@ -1,6 +1,6 @@
 ;;; gilded-select.el --- Minor enhancements to the excellent Selectrum package -*- lexical-binding: t -*-
 
-;; Copyright (C) 2020 Ashton Wiersdorf
+;; Copyright © 2020 Ashton Wiersdorf
 
 ;; Author: Ashton Wiersdorf <ashton.wiersdorf@pobox.com>
 ;; Created: 20 Oct 2020
@@ -110,13 +110,13 @@ the keybinding without any frills."
 (define-minor-mode gilded-select-mode
   "Minor mode to use gilded-select for `M-x'"
   :init-value t
-  :lighter " Gild"
+  :lighter " Au"
   :global t
   :keymap '(([M-x] . gilded-mx))
   (add-hook 'after-init-hook 'gilded-rehash-key-bindings))
 
 ;;;; Postlude
 
-(provide 'gilded-select)
+(provide 'gilded-select-mode)
 
 ;;; gilded-select.el ends here
