@@ -39,27 +39,28 @@ to the functions they're bound to."
    (lambda (sym)
      (when (and (commandp sym) (where-is-internal sym))
        (puthash sym (format "%s %s" (symbol-name sym)
-			    (keybind-propertize (key-description (car (where-is-internal sym)))))
+			    (gilded-keybind-propertize (key-description (car (where-is-internal sym)))))
 		gilded-command-keybinding-hash)
        ))
    obarray)
   (message "Finished building keybinding cache"))
 
-(defun keybind-propertize (str)
+(defun gilded-keybind-propertize (str)
   "Function used to format the keybinding annotation. Receives
 the keybinding without any frills."
   (format "(%s)" (propertize str 'face 'font-lock-doc-face)))
 
-(defun string-gen-times (n str acc)
-  (if (= n 0) acc (string-gen-times (- n 1) str (cons str acc))))
+(defun gilded-string-gen-times (n str acc)
+  (if (= n 0) acc (gilded-string-gen-times (- n 1) str (cons str acc))))
 
 (defun gilded-prompt-string (prefix)
   "Given a prefix argument, builds a prompt string for `gilded-mx'."
   (format "%sM-x "
 	  (if (and prefix (listp prefix) (not (= (car prefix) 0)) (memq (car prefix) '(4 16 32 128)))
-	      (apply #'concat (string-gen-times (log (car prefix) 4) "C-u " '()))
+	      (apply #'concat (gilded-string-gen-times (log (car prefix) 4) "C-u " '()))
 	    (if prefix (format "(%s) " prefix) ""))))
 
+;;;###autoload
 (defun gilded-mx (prefix)
   "Like `execute-extended-command', but with fancy annotations."
   (interactive "P")
@@ -102,3 +103,9 @@ the keybinding without any frills."
 
 ;; Rehash all the keybindings when we change to a new mode
 ;; (add-hook 'after-change-major-mode-hook 'gilded-rehash-key-bindings)
+
+;;;; Postlude
+
+(provide 'gilded-select)
+
+;;; gilded-select.el ends here

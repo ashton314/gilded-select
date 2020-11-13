@@ -1,0 +1,21 @@
+#+TITLE: Gilded Select
+
+Minor enhancements to the excellent [[https://github.com/raxod502/selectrum][Selectrum]] package
+
+* Description
+
+The one thing that I miss from the [[https://github.com/abo-abo/swiper][Counsel]] package is how keybindings are displayed next to the functions when you run ~M-x~.
+
+*NOTE*: Emacs 28 should include most (if not all) of these annotations by default, so this package will most likely no longer be relevant. As of writing, I'm running Emacs 27.1, so I needed to write a package to add these annotations for me.
+
+* Installation
+
+TODO
+
+* Usage
+
+TODO
+
+* Author
+
+Ashton Wiersdorf
