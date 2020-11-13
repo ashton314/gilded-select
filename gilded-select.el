@@ -108,13 +108,17 @@ the keybinding without any frills."
 
 ;;;###autoload
 (define-minor-mode gilded-select-mode
-  "Minor mode to use gilded-select for `M-x'"
+  "Minor mode to use gilded-select for `M-x'
+
+Enables `selectrum-mode' and sets `M-x' to run `gilded-mx'. Also
+adds a hook to rehash the keybindings."
   :init-value t
   :lighter " Au"
   :global t
   :keymap (let ((gilded-map (make-sparse-keymap)))
 	    (define-key gilded-map (kbd "M-x") 'gilded-mx)
 	    gilded-map)
+  (selectrum-mode +1)
   (add-hook 'after-init-hook 'gilded-rehash-key-bindings))
 
 ;;;; Postlude
