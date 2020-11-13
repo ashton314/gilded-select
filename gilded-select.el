@@ -112,7 +112,9 @@ the keybinding without any frills."
   :init-value t
   :lighter " Au"
   :global t
-  :keymap '(([M-x] . gilded-mx))
+  :keymap (let ((gilded-map (make-sparse-keymap)))
+	    (define-key gilded-map (kbd "M-x") 'gilded-mx)
+	    gilded-map)
   (add-hook 'after-init-hook 'gilded-rehash-key-bindings))
 
 ;;;; Postlude
