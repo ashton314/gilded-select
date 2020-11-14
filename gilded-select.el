@@ -37,15 +37,28 @@
 `execute-extended-command' will show the proper keybindings next
 to the functions they're bound to."
   (interactive)
-  (obarray-map
-   (lambda (sym)
-     (when (and (commandp sym) (where-is-internal sym))
-       (puthash sym (format "%s %s" (symbol-name sym)
-			    (gilded-keybind-propertize (key-description (car (where-is-internal sym)))))
-		gilded-command-keybinding-hash)
-       ))
-   obarray)
-  (message "Finished building keybinding cache"))
+  (let ((start-time (current-time)))
+    (obarray-map
+     (lambda (sym)
+       (when (and (commandp sym) (where-is-internal sym))
+	 (puthash sym (format "%s %s" (symbol-name sym)
+			      (gilded-keybind-propertize (key-description (car (where-is-internal sym)))))
+		  gilded-command-keybinding-hash)
+	 ))
+     obarray)
+    (message (format "Finished building keybinding cache; processed %s obarray entries in %s seconds"
+		     (length obarray)
+		     (time-to-seconds (time-subtract (current-time) start-time))))))
+
+;; Foo. This isn't working.
+;; (defun gilded-rehash-key-bindings-async ()
+;;   (interactive)
+;;   (async-start
+;;    `(lambda ()
+;;       (gilded-rehash-key-bindings))
+;;    (lambda (res)
+;;      (message "Finished gilded-rehash; got result")
+;;      (pp res))))
 
 (defun gilded-keybind-propertize (str)
   "Function used to format the keybinding annotation. Receives
