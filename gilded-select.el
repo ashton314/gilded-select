@@ -4,7 +4,7 @@
 
 ;; Author: Ashton Wiersdorf <ashton.wiersdorf@pobox.com>
 ;; Created: 20 Oct 2020
-;; Version: 0.0.1-alpha
+;; Version: 0.0.2
 ;; Package-Requires: ((emacs "25.1") (selectrum "2.0") (async "1.9.4"))
 ;; Keywords: extensions selectrum bindings
 ;; SPDX-License-Identifier: MIT
