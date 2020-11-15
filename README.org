@@ -8,12 +8,12 @@ The one thing that I miss from the [[https://github.com/abo-abo/swiper][Counsel]
 
 If you're anything like me, you'll like this package.
 
-[[file:docs/img/org_head_demo.png][org_head_demo]]
-
 #+html: <img src="https://github.com/ashton314/gilded-select/blob/master/docs/img/org_head_demo.png" alt="Demonstration after typing org head" />
 
+#+html: <img src="https://github.com/ashton314/gilded-select/blob/master/docs/img/mode_mixture_demo.png" alt="Demonstration of various styles when looking at active/inactive minor modes" />
 
-*NOTE*: Emacs 28 should include most (if not all) of these annotations by default, so this package will most likely no longer be relevant. As of writing, I'm running Emacs 27.1, so I needed to write a package to add these annotations for me.
+
+*NOTE*: Emacs 28 should include most (if not all) of these keybinding annotations by default, so this package will most likely no longer be that relevant. (It does still offer minor mode highlighting.) As of writing, I'm running Emacs 27.1, so I needed to write a package to add these annotations for me.
 
 * Installation
 
