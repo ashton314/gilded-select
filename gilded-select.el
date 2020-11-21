@@ -4,7 +4,7 @@
 
 ;; Author: Ashton Wiersdorf <ashton.wiersdorf@pobox.com>
 ;; Created: 20 Oct 2020
-;; Version: 0.0.2
+;; Version: 0.0.3
 ;; Package-Requires: ((emacs "25.1") (selectrum "2.0"))
 ;; Keywords: extensions selectrum bindings
 ;; SPDX-License-Identifier: MIT
@@ -125,6 +125,6 @@ adds a hook to rehash the keybindings."
 
 ;;;; Postlude
 
-(provide 'gilded-select-mode)
+(provide 'gilded-select)
 
 ;;; gilded-select.el ends here
