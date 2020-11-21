@@ -5,7 +5,7 @@
 ;; Author: Ashton Wiersdorf <ashton.wiersdorf@pobox.com>
 ;; Created: 20 Oct 2020
 ;; Version: 0.0.2
-;; Package-Requires: ((emacs "25.1") (selectrum "2.0") (async "1.9.4"))
+;; Package-Requires: ((emacs "25.1") (selectrum "2.0"))
 ;; Keywords: extensions selectrum bindings
 ;; SPDX-License-Identifier: MIT
 ;; Homepage: https://github.com/ashton314/gilded_select
@@ -26,7 +26,6 @@
 ;;;; Libraries
 
 (require 'selectrum)
-(require 'async)
 
 (defvar gilded-command-keybinding-hash (make-hash-table) "Cache of commands to the keys they are bound to.")
 
@@ -49,16 +48,6 @@ to the functions they're bound to."
     (message (format "Finished building keybinding cache; processed %s obarray entries in %s seconds"
 		     (length obarray)
 		     (time-to-seconds (time-subtract (current-time) start-time))))))
-
-;; Foo. This isn't working.
-;; (defun gilded-rehash-key-bindings-async ()
-;;   (interactive)
-;;   (async-start
-;;    `(lambda ()
-;;       (gilded-rehash-key-bindings))
-;;    (lambda (res)
-;;      (message "Finished gilded-rehash; got result")
-;;      (pp res))))
 
 (defun gilded-keybind-propertize (str)
   "Function used to format the keybinding annotation. Receives
