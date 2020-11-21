@@ -4,7 +4,7 @@
 
 ;; Author: Ashton Wiersdorf <ashton.wiersdorf@pobox.com>
 ;; Created: 20 Oct 2020
-;; Version: 0.0.3
+;; Version: 0.0.4
 ;; Package-Requires: ((emacs "25.1") (selectrum "2.0"))
 ;; Keywords: extensions selectrum bindings
 ;; SPDX-License-Identifier: MIT
@@ -27,9 +27,26 @@
 
 (require 'selectrum)
 
+;;;; Faces
+
+(defface gilded-minor-mode-active
+  '((t (:foreground "green")))
+  "Face used to highlight active minor modes in the minibuffer."
+  :group 'gilded-faces)
+
+(defface gilded-minor-mode-inactive
+  '((t (:foreground "red")))
+  "Face used to highlight inactive minor modes in the minibuffer.
+Note: only shows up for modes that were active in the past."
+  :group 'gilded-faces)
+
+;;;; Variables
+
 (defvar gilded-command-keybinding-hash (make-hash-table) "Cache of commands to the keys they are bound to.")
 
 (defvar gilded--old-M-x-function nil "Previous function bound to `M-x'.")
+
+;;;; Functions
 
 (defun gilded-rehash-key-bindings ()
   "Rebuild `gilded-command-keybinding-hash' so that calling
@@ -71,7 +88,7 @@ the keybinding without any frills."
   (let ((current-prefix-arg prefix))
     (call-interactively
      (intern				; This strips off the annotations since they're all just propertized on
-      (car (split-string			; Remove the keybind annotation if present
+      (car (split-string                ; Remove the keybind annotation if present
 	    (completing-read
 	     (gilded-prompt-string prefix)
 	     (let ((modes (make-hash-table :test #'equal))
@@ -86,8 +103,8 @@ the keybinding without any frills."
 		      (symbol-name var)
 		      'face
 		      (if (symbol-value var)
-			  'compilation-mode-line-exit
-			'compilation-mode-line-fail))
+			  'gilded-minor-mode-active
+			'gilded-minor-mode-inactive))
 		     modes)))
 		minor-mode-alist)
 
